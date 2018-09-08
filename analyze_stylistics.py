@@ -49,27 +49,39 @@ def analyze_news():
 	text_avg_word_length = []
 	title_word_count = []
 	title_avg_word_length = []
-	
+	counter = 0
 	for item in baseTable.iterrows():
 		title = item[1][0]
-		
+		text = item[1][1] #can remove
 		title_tag = get_tag_count(title)
 		title_tags.append(title_tag)
 		#print(title)
+		if counter == 1765:
+			print(title)
+			print(text)
+			print(type(text))
 		word_count, word_length = word_count_length(title)
 		title_avg_word_length.append(word_length)
 		title_word_count.append(word_count)
-	
-	
+		counter+=1
+	counter = 0
 	for item in baseTable.iterrows():
 		text = item[1][1]
 		
 		text_tag = get_tag_count(text)
 
 		text_tags.append(text_tag)
-		word_count, word_length = word_count_length(text)
+		print(counter)
+		try:
+			word_count, word_length = word_count_length(text)
+		except TypeError:
+			print(title)
+			print(text)
+			print(word_count)
+			print(word_length)
 		text_avg_word_length.append(word_length)
 		text_word_count.append(word_count)
+		counter += 1
 		
 	title_word_count = pd.Series(title_word_count, name = 'titlewc')
 	title_avg_word_length = pd.Series(title_avg_word_length, name = 'titleLength')

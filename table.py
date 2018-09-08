@@ -8,17 +8,18 @@ def getTable(num):
 	truth = []
 
 
-
 	for item in mc.getTrueNews(num):
-		if len(item['title']) == 0 or len(item['text']) == 0:
+		if len(item['title'].strip()) == 0 or len(item['text'].strip()) == 0:
 			continue
+		
 		title.append(item['title'])
 		text.append(item['text'])
 		truth.append(item['truth'])
 
 	for item in mc.getFakeNews(num):
-		if len(item['title']) == 0 or len(item['text']) == 0:
+		if len(item['title'].strip()) == 0 or len(item['text'].strip()) == 0:
 			continue
+		
 		title.append(item['title'])
 		text.append(item['text'])
 		truth.append(item['truth'])
