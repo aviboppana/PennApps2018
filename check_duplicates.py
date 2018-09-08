@@ -78,11 +78,49 @@ def count_articles():
 	except StopIteration:
 		return count
 
+def remove_duplicates(A):
+	'''
+	Removes all duplicate titles in array A from the database
+	
+	e.g. 
+	A = [Cat, Cat]
+	db = [Cat, Dog, Cat, Cat] -> [Cat, Dog]
+	'''
+	Collection = mc.getCollection()
+	
+	for article_title in A:
+		Collection.delete_one({"title":article_title})
+
+def count_true_and_false():
+	'''
+	Counts number of true and false articles in db
+	'''
+	cursor = mc.getData()
+	
+	trueCount = 0
+	falseCount = 0
+	try:
+		while True:
+			article = cursor.next()
+			truth = article["truth"]
+			if truth:
+				trueCount += 1
+			else:
+				falseCount += 1
+			
+	except StopIteration:
+		return trueCount, falseCount
+	
+
 if __name__ == '__main__':
 	duplicates = get_duplicates()
-	num_true, num_false = count_duplicates_by_truthiness()
-	#print(duplicates)
-	print("True: {}\tFalse: {}".format(num_true, num_false))
+	num_dup_true, num_dup_false = count_duplicates_by_truthiness()
+	print("Duplicates by truthiness: True: {}\tFalse: {}".format(num_dup_true, num_dup_false))
 	print(count_articles())
+	
+	num_true, num_false = count_true_and_false()
+	print("Overall article truthiness: True: {}\tFalse: {}".format(num_true, num_false))
+	remove_duplicates(duplicates)
+	
 	
 	
