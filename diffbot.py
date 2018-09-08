@@ -9,7 +9,7 @@ def get_token():
 
 def retrieve_from_url(url, token):
 	'''
-	Retrieves json of text title etc from diffbot api
+	Retrieves text of article using diffbot api
 	'''
 	
 	diffbot_url = "https://api.diffbot.com/v3/article"
@@ -17,13 +17,8 @@ def retrieve_from_url(url, token):
 	get_request = diffbot_url + "?" + parameters
 	content = urllib.request.urlopen(get_request).read()
 	
-	return content
+	result = content.decode("utf-8")
+	return json.loads(result)['objects'][0]["text"]
 
 if __name__ == '__main__':
-	url = "https://www.npr.org/2018/09/07/645637404/dallas-police-officer-kills-man-in-his-apartment-says-she-thought-it-was-her-hom"
-	r = retrieve_from_url(url, get_token())
-	
-	result = r.decode("utf-8")
-	result = json.loads(result)
-	
-	print(result['objects'][0]["text"])
+	pass
