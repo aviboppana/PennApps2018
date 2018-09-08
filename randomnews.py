@@ -24,7 +24,9 @@ def get_articles(genre, isTrue):
         upperBoundary = totalNum
     num = random.randint(0, upperBoundary)
     
-    page_num = int(num / 100) + 1
+    page_num = num % 100
+    if page_num == 100:
+        page_num == 99
     
     all_articles = newsapi.get_everything(q=genre, language = 'en', page_size =100, page = page_num, domains = sources)
     
@@ -32,7 +34,15 @@ def get_articles(genre, isTrue):
     
     return(item['url'], item['title'], isTrue)
 
+def fake_news_validate(genre, domain):
+    news_token = open("newstoken.txt").readline().rstrip()
+    newsapi = NewsApiClient(api_key=news_token)
+
+    if(newsapi.get_everything(q=genre, language = 'en', page_size =100, page = 1, domains = domain)['totalResults'] > 0):
+        return True
+    else:
+        return False 
 
 if __name__ == '__main__':
-	pass
+	print(fake_news_validate('politics', 'newsthump.com'))
     

@@ -29,6 +29,22 @@ def getData():
 
 	return db.docs.find()
 
+def getTrueNews(num):
+	connection = pymongo.MongoClient(config.DB_HOST, config.DB_PORT)
+	db = connection[config.DB_NAME]
+
+	db.authenticate(config.DB_USER, config.DB_PASS)
+
+	return db.docs.find({'truth': True}).limit(num)
+
+def getFakeNews(num):
+	connection = pymongo.MongoClient(config.DB_HOST, config.DB_PORT)
+	db = connection[config.DB_NAME]
+
+	db.authenticate(config.DB_USER, config.DB_PASS)
+
+	return db.docs.find({'truth': False}).limit(num)
+
 def doesExist(title):
 	connection = pymongo.MongoClient(config.DB_HOST, config.DB_PORT)
 	db = connection[config.DB_NAME]
