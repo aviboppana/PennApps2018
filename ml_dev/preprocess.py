@@ -16,3 +16,11 @@ def preprocess(corpus):
                 sent_list.append(word)
         ret.append(sent_list)
     return ret
+
+def tfidf_preprocess(corpus):
+    blob = TextBlob(corpus)
+    ret = []
+    for word in blob.words:
+        if word in english_words and word not in stops:
+            ret.append(word)
+    return ' '.join(ret)
