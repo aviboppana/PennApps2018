@@ -18,7 +18,12 @@ def retrieve_from_url(url, token):
 	content = urllib.request.urlopen(get_request).read()
 	
 	result = content.decode("utf-8")
-	return json.loads(result)['objects'][0]["text"]
+	try:
+		return json.loads(result)['objects'][0]["text"]
+	except KeyError:
+		print("ERROR WITH PARSING DIFFBOT RESPONSE: ")
+		print(json.loads(result))
+		raise KeyError
 
 if __name__ == '__main__':
 	pass
