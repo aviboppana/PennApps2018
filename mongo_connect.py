@@ -1,4 +1,4 @@
-import pymong
+import pymongo
 import json
 import config
 
@@ -10,4 +10,6 @@ def put_db(texts):
 
     db.authenticate(config.DB_USER, config.DB_PASS)
 
-    db.insert_many(texts)
+    for text in texts:
+        db.docs.insert(text)
+
