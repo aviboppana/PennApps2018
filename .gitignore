@@ -1,1 +1,5 @@
-random_forest.ipynb config.py old/
+*.ipynb*
+config.py 
+old/
+
+
