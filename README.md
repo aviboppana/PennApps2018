@@ -29,6 +29,6 @@ The accuracy of this model was calculated by training the model on 80% of the 20
 **Model 2 (used in production)**
 88% accuracy
 
-For preprocessing we removed stop words and capitalization. The input vectors were made with term frequency-inverse document frequency. That is, we weighted words by how often they appeared in the article contrasted to how often they appeared "in the wild".
+For preprocessing we remove stop words and capitalization. The input vectors were made with term frequency-inverse document frequency. That is, we weight words by how often they appear in the article contrasted to how often they appeared "in the wild".
 
-We used a random forest classifier enhanced by XGBoost. We verified the accuracy of this model by using a 10-fold cross-validation.
+We use a random forest classifier enhanced by XGBoost. We verified the accuracy of this model by using a 10-fold cross-validation.
