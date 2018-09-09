@@ -17,7 +17,6 @@ model = train_model(db)
 
 @app.route('/get_pred', methods=['GET', 'POST'])
 def get_pred():
-    import pdb; pdb.set_trace()
     url = request.form.get('url', None)
     if not url:
         abort(400)
@@ -37,4 +36,4 @@ def get_pred():
     ) 
     
 if __name__ == '__main__':
-    app.run('127.0.0.1', port=8080, debug=True)
+    app.run('127.0.0.1', port=8080, debug=False)
