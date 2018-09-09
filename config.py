@@ -4,3 +4,5 @@ DB_NAME = 'pennapps'
 
 DB_USER = 'hamoor'
 DB_PASS = 'H@ri1999'
+
+API_TOKEN = '937dd501362f79ce728740803537d538'
