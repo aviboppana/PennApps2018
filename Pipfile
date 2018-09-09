@@ -6,6 +6,9 @@ name = "pypi"
 [dev-packages]
 
 [packages]
+numpy = "*"
+scipy = "*"
+xgboost = "*"
 
 [requires]
 python_version = "3.6"
